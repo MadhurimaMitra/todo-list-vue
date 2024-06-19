@@ -1,9 +1,9 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   target: 'static',
-  router: {
-    base: 'todo-list-vue'
-  },
+  // router: {
+  //   base: 'todo-list-vue'
+  // },
   head: {
     title: 'todo-list-vue',
     htmlAttrs: {
@@ -43,9 +43,12 @@ export default {
       theme: {
         extend: {
           colors: {
-            'pink': '#EA40A4',
+            // 'pink': '#EA40A4',
+            // 'pink-shadow': '0px 0px 4px rgba(58, 130, 238, 0.75)',
+            // 'blue': '#3A82EE',
+            // 'blue-shadow': '0px 0px 4px rgba(234, 64, 164, 0.75)',
             'light': '#EEE',
-            'red': '#ff5b57',
+            // 'red': '#ff5b57',
             'grey': '#888'
           },
           fontFamily: {

@@ -1,13 +1,26 @@
 <template>
-    <section v-if="todoList">
-        <h1 class="mb-4">TODO LIST</h1>
-
-        <div class="flex justify-between items-center bg-white rounded-md py-4 px-4 mb-4" v-for="(todo, index) in todos" :key="index">
-            <div class="">
-                <input v-model="checked" type="checkbox" id="item">
-                <label for="item" :class="{'line-through': checked}">{{ todo }}</label>
+    <section v-if="listCheck">
+        
+        <div 
+            class="flex justify-between items-center bg-white rounded-md py-4 px-4 mb-4" 
+            :class="{'border-2 border-pink-400': todo.category == 'business', 'border-2 border-blue-400': todo.category == 'personal'}"
+            v-for="(todo, index) in todos" :key="index">
+            <div class="flex items-center gap-4" @click="todo.checked = !todo.checked">
+                <input v-model="todo.checked" type="checkbox" class="appearance-none">
+                <div 
+                    class="w-6 h-6 rounded-full flex items-center justify-center cursor-pointer" 
+                    :class="{
+                        'border border-pink-400': todo.category=='business', 
+                        'border border-blue-400': todo.category=='personal', 
+                    }">
+                    <div 
+                        class="w-4 h-4 rounded-full" 
+                        :class="{'bg-pink-400': todo.checked && todo.category=='business', 'bg-blue-400': todo.checked && todo.category=='personal'}">
+                    </div>
+                </div>
+                <span class="cursor-pointer" :class="{'line-through text-neutral-500': todo.checked}">{{ todo.value }}</span>
             </div>
-            <button class="bg-red text-white text-sm p-2 rounded" @click="handleDeleteClick(todos, index)">Delete</button>
+            <button class="bg-red-500 text-white text-sm p-2 rounded" @click="handleDeleteClick(todos, index)">Delete</button>
         </div>
         
     </section>
@@ -16,18 +29,21 @@
 <script>
 export default {
     props: {
-        'todos': Array,
-        'todoList': Boolean,
-        'selected': String
+        'listCheck': Boolean,
+        'todos': Array
     },
     data() {
         return {
-            checked: false
+            isChecked: false,
+            allItems: []
         }
     },
     methods: {
         handleDeleteClick(todos, index) {
             todos.splice(index, 1)
+        },
+        handleCheck() {
+            this.checked.push(this.isChecked)
         }
     }
 }
