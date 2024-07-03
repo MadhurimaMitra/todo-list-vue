@@ -33,8 +33,10 @@ export default {
             todo: '',
             selected: '',
             todos: [],
+            items: []
         }
     },
+    
     methods: {
         handleClick() {
             if (this.todo.length != 0 && this.selected.length != 0) {
@@ -44,10 +46,18 @@ export default {
                 obj.category = this.selected
                 obj.checked = false
                 this.todos.push(obj)
+                localStorage.setItem('todoList', JSON.stringify(this.todos))
                 this.todo = ''
                 this.selected = ''
             }
+            
         },
+    },
+    mounted() {
+        this.todos = JSON.parse(localStorage.getItem('todoList')) || []
+        if (this.todos.length != 0) {
+                this.listCheck = true
+            }
     }
 }
 </script>

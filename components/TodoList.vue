@@ -1,8 +1,8 @@
 <template>
-    <section v-if="listCheck">
-        
+    <section v-if="listCheck"> 
+        <h1>TODO LIST</h1>
         <div 
-            class="flex justify-between items-center bg-white rounded-md py-4 px-4 mb-4" 
+            class="flex justify-between items-center bg-white rounded-md py-4 px-4 my-4" 
             :class="{'border-2 border-pink-400': todo.category == 'business', 'border-2 border-blue-400': todo.category == 'personal'}"
             v-for="(todo, index) in todos" :key="index">
             <div class="flex items-center gap-4" @click="todo.checked = !todo.checked">
@@ -27,24 +27,25 @@
 </template>
 
 <script>
+
 export default {
     props: {
         'listCheck': Boolean,
-        'todos': Array
+        'todos': Array,
     },
     data() {
         return {
-            isChecked: false,
-            allItems: []
+            
         }
     },
+    
     methods: {
         handleDeleteClick(todos, index) {
             todos.splice(index, 1)
         },
-        handleCheck() {
-            this.checked.push(this.isChecked)
-        }
+    },
+    mounted() {
+        
     }
 }
 </script>
